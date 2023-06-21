@@ -8,6 +8,6 @@ class QuestionInline(admin.TabularInline):
 
 
 @admin.register(Survey)
-class AuthorAdmin(admin.ModelAdmin):
+class SurveyAdmin(admin.ModelAdmin):
     list_display = ["name", "created", "updated"]
     inlines = [QuestionInline]
