@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # apps
+    "formmaker.response",
     "formmaker.survey",
     # libs
     "graphene_django",
