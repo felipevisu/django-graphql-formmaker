@@ -127,4 +127,9 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-GRAPHENE = {"SCHEMA": "formmaker.graphql.schema.schema"}
+GRAPHENE = {
+    "SCHEMA": "formmaker.graphql.schema.schema",
+    "MIDDLEWARE": [
+        "graphene_django.debug.DjangoDebugMiddleware",
+    ],
+}
