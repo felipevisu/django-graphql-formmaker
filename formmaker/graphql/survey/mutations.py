@@ -1,5 +1,7 @@
 import graphene
+from django.core.exceptions import ValidationError
 
+from ..core.mutations import BaseMutation
 from .types import Survey
 
 
@@ -13,13 +15,12 @@ class ResponseInput(graphene.InputObjectType):
     answers = graphene.List(AnswerInput)
 
 
-class CreateResponse(graphene.Mutation):
+class CreateResponse(BaseMutation):
     class Arguments:
         input = ResponseInput(required=True)
 
     survey = graphene.Field(Survey)
 
     @classmethod
-    def mutate(cls, root, info, input):
-        print(input)
-        return CreateResponse(survey=None)
+    def perform_mutation(cls, root, info, input):
+        raise ValidationError({"id": ValidationError("not found")})
