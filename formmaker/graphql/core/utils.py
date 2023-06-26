@@ -41,6 +41,7 @@ def get_error_code_from_error(error) -> str:
     return code
 
 
+# this: "snake_to_camel_case" will become this "SnakeToCamelCase"
 def snake_to_camel_case(name):
     if isinstance(name, str):
         split_name = name.split("_")
