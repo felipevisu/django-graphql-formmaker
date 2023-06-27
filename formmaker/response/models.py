@@ -22,4 +22,8 @@ class Answer(models.Model):
         Question, on_delete=models.SET_NULL, null=True, blank=True
     )
     question_body = models.TextField()
-    answer_body = models.TextField(blank=True)
+
+
+class Value(models.Model):
+    value = models.CharField(max_length=256)
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE, related_name="values")

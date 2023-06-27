@@ -10,7 +10,7 @@ from .types import Survey
 
 class AnswerInput(graphene.InputObjectType):
     id = graphene.ID(required=True)
-    body = graphene.String(required=True)
+    values = graphene.List(graphene.String)
 
 
 class ResponseInput(graphene.InputObjectType):
@@ -63,15 +63,17 @@ class CreateResponse(BaseMutation):
         id = from_global_id(global_id).id
         response = response_models.Response.objects.create(survey_id=id)
         answers = input.get("answers")
-        for answer in answers:
-            id = from_global_id(answer["id"]).id
+        for question_answer in answers:
+            id = from_global_id(question_answer["id"]).id
             question = survey_models.Question.objects.filter(id=id).first()
-            response_models.Answer.objects.create(
+            answer = response_models.Answer.objects.create(
                 question=question,
                 response=response,
-                answer_body=answer["body"],
                 question_body=question.name,
             )
+            values = question_answer.get("values")
+            for value in values:
+                response_models.Value.objects.create(value=value, answer=answer)
 
     @classmethod
     def perform_mutation(cls, root, info, input):

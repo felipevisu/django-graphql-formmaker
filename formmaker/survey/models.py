@@ -20,7 +20,7 @@ class Question(models.Model):
     )
 
 
-class Value(models.Model):
+class QuestionValue(models.Model):
     name = models.CharField(max_length=256)
     question = models.ForeignKey(
         Question, on_delete=models.CASCADE, related_name="values"
