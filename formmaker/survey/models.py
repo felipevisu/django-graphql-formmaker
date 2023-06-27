@@ -1,5 +1,7 @@
 from django.db import models
 
+from . import QuestionType
+
 
 class Survey(models.Model):
     name = models.CharField(max_length=256)
@@ -13,3 +15,13 @@ class Question(models.Model):
         Survey, on_delete=models.CASCADE, related_name="questions"
     )
     name = models.CharField(max_length=256)
+    type = models.CharField(
+        max_length=256, choices=QuestionType.choices, default=QuestionType.PLAIN_TEXT
+    )
+
+
+class Value(models.Model):
+    name = models.CharField(max_length=256)
+    question = models.ForeignKey(
+        Question, on_delete=models.CASCADE, related_name="values"
+    )

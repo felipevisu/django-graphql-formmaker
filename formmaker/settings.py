@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "formmaker.survey",
     # libs
     "graphene_django",
+    "nested_inline",
 ]
 
 MIDDLEWARE = [
