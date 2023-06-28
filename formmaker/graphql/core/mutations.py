@@ -63,6 +63,10 @@ class BaseMutation(graphene.Mutation):
         pass
 
     @classmethod
+    def clean_input(cls, input):
+        pass
+
+    @classmethod
     def handle_errors(cls, error: ValidationError, **extra):
         errors = validation_error_to_error_type(error)
         return cls.handle_typed_errors(errors, **extra)
