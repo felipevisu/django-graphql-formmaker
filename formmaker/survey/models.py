@@ -21,6 +21,10 @@ class Question(models.Model):
     type = models.CharField(
         max_length=256, choices=QuestionType.choices, default=QuestionType.PLAIN_TEXT
     )
+    order = models.PositiveIntegerField(default=0, blank=True, null=True)
+
+    class Meta:
+        ordering = ["order"]
 
     def __str__(self):
         return self.name
@@ -31,6 +35,10 @@ class QuestionValue(models.Model):
     question = models.ForeignKey(
         Question, on_delete=models.CASCADE, related_name="values"
     )
+    order = models.PositiveIntegerField(default=0, blank=True, null=True)
+
+    class Meta:
+        ordering = ["order"]
 
     def __str__(self):
         return self.name

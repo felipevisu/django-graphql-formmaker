@@ -1,5 +1,5 @@
 from django.contrib import admin
-from nested_inline.admin import NestedModelAdmin, NestedStackedInline
+from nested_admin import NestedModelAdmin, NestedStackedInline
 
 from .models import Answer, Response, Value
 
@@ -26,13 +26,11 @@ class ReadOnlyMixin:
 class ValueInline(ReadOnlyMixin, NestedStackedInline):
     model = Value
     extra = 1
-    fk_name = "answer"
 
 
 class AnswerInline(ReadOnlyMixin, NestedStackedInline):
     model = Answer
     extra = 1
-    fk_name = "response"
     inlines = [ValueInline]
 
 

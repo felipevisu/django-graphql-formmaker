@@ -1,19 +1,19 @@
 from django.contrib import admin
-from nested_inline.admin import NestedModelAdmin, NestedStackedInline
+from nested_admin import NestedModelAdmin, NestedStackedInline
 
 from .models import Question, QuestionValue, Survey
 
 
 class QuestionValueInline(NestedStackedInline):
     model = QuestionValue
-    extra = 1
-    fk_name = "question"
+    extra = 0
+    sortable_field_name = "order"
 
 
 class QuestionInline(NestedStackedInline):
     model = Question
-    extra = 1
-    fk_name = "survey"
+    extra = 0
+    sortable_field_name = "order"
     inlines = [QuestionValueInline]
 
 
