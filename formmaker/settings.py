@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     # libs
     "graphene_django",
     "nested_admin",
+    "debug_toolbar",
+    "graphiql_debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -53,6 +55,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "graphiql_debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "formmaker.urls"
